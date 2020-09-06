@@ -1,56 +1,54 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
+      <v-toolbar-title>Vue Todo App</v-toolbar-title>
       <v-spacer></v-spacer>
-
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+        v-for="link in links"
+        :key="link.label"
+        :to="link.url"
         text
+        rounded
+        >{{ link.label }}</v-btn
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
     </v-app-bar>
+    <v-content>
+      <router-view></router-view>
+    </v-content>
 
-    <v-main>
-      <HelloWorld />
-    </v-main>
-  </v-app>
+    <v-footer color="primary lighten-1" padless>
+      <v-row justify="center" no-gutters>
+        <v-btn
+          v-for="link in links"
+          :to="link.url"
+          :key="link.label"
+          color="white"
+          text
+          rounded
+          class="my-2"
+        >
+          {{ link.label }}
+        </v-btn>
+        <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
+          {{ new Date().getFullYear() }} — <strong>Vue Todo App</strong>
+        </v-col>
+      </v-row>
+    </v-footer></v-app
+  >
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-
 export default {
   name: "App",
 
-  components: {
-    HelloWorld
-  },
+  components: {},
 
   data: () => ({
-    //
-  })
+    links: [
+      { label: "Home", url: "/" },
+      { label: "About", url: "/about" },
+      { label: "Todos", url: "/todos" },
+    ],
+  }),
 };
 </script>
