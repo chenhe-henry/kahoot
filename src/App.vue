@@ -58,7 +58,7 @@ export default {
   created() {
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/weather?q=Sydney&appid=${weatherAPI}`
+        `https://api.openweathermap.org/data/2.5/weather?q=Sydney&appid=${weatherAPI}`
       )
       .then((response) => {
         console.log(response.data);
