@@ -1,9 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <v-toolbar-title v-show="weather"
-        >Vue Todo App {{ weather.weather[0].main }}</v-toolbar-title
-      >
+      <v-toolbar-title>Vue Todo App </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
         v-for="link in links"
@@ -40,8 +38,6 @@
 </template>
 
 <script>
-import axios from "axios";
-let weatherAPI = process.env.VUE_APP_TEST_KEY;
 export default {
   name: "App",
 
@@ -53,18 +49,6 @@ export default {
       { label: "About", url: "/about" },
       { label: "Todos", url: "/todos" },
     ],
-    weather: null,
   }),
-  created() {
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=Sydney&appid=${weatherAPI}`
-      )
-      .then((response) => {
-        console.log(response.data);
-        this.weather = response.data;
-        console.log(this.weather.weather[0].main);
-      });
-  },
 };
 </script>
